@@ -5,7 +5,7 @@ const CRUD = new mongoose.Schema({
     taskname: {
         type: String,
         required: [true, "Task Name is Must"],
-        maxlength: 50,
+        maxlength: 100,
         minlength: 1,
         unique: true
     },
@@ -32,10 +32,12 @@ CRUD.post('save', function (error, doc, next) {
         next(`Task Name Must Be Unique`,);
     }
     else if (error.name === 'ValidationError') {
+        console.log(error)
         if (error.errors.taskname) next(error.errors.taskname.message);
         else if (error.errors.status) next(error.errors.status.message)
         else if (error.errors.description) next(error.errors.description.message)
         else next("Wrong Schema !");
+
     }
     else {
         next();

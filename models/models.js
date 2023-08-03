@@ -32,7 +32,7 @@ const Patch_Task = async (req, res) => {
         }).select(["-__v"])
         res.status(200).json({ task })
     } catch (err) {
-        res.status(500).json({ message: "Schema is False", error: err.message })
+        res.status(500).json({ message: "Invalid Schema", error: err.message })
     }
 }
 
