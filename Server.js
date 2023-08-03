@@ -1,7 +1,10 @@
 const express = require("express")
 const app = express()
 require("dotenv").config()
+var cors = require('cors')
+app.use(cors())
 app.use(express.json())
+
 
 const SchemaRouter = require("./Router/Router")
 app.use('/task', SchemaRouter)

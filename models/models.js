@@ -26,8 +26,8 @@ const Get_Task = async (req, res) => {
 // Updates The Tasks
 const Patch_Task = async (req, res) => {
     try {
-        const { taskname } = req.query
-        const task = await NameSchema.findOneAndUpdate({ taskname }, req.body, {
+        const { _id } = req.query
+        const task = await NameSchema.findOneAndUpdate({ _id }, req.body, {
             new: true, runValidators: true
         }).select(["-__v"])
         res.status(200).json({ task })
@@ -39,12 +39,11 @@ const Patch_Task = async (req, res) => {
 // Delete The selected Tasks
 const Delete_Task = async (req, res) => {
     try {
-        const { taskname } = req.query
-        const count = await NameSchema.deleteOne({ taskname })
+        const { _id } = req.query
+        const count = await NameSchema.deleteOne({ _id })
         res.status(200).json({ message: "Deletion Successful!", status: count })
     } catch (err) {
         res.status(500).json({ message: "Schema is False", error: err.message })
-
     }
 }
 

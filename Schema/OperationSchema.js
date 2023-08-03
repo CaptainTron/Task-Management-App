@@ -19,6 +19,12 @@ const CRUD = new mongoose.Schema({
         required: [true, "Status is Must"],
         enum: { values: ["Completed", "Pending"], message: '{VALUE} is not valid Option, it must be either Completed or Pending' }
     },
+    dateofcreation: {
+        type: String,
+        required: [true, "Date is Must"],
+        maxlength: 40
+    }
+
 })
 
 CRUD.post('save', function (error, doc, next) {
